@@ -1,99 +1,104 @@
 import { Search, ShoppingBag, User, Heart, Menu, Phone, ChevronDown } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
   return (
-    <header className="w-full font-sans">
-      {/* 1. Slim Top Announcement Bar */}
-      <div className="bg-slate-900 text-white py-2 px-4 text-center text-xs font-medium tracking-wide">
-        Shop with confidence! 30-day hassle-free returns.
+    <header className="w-full bg-white font-sans sticky top-0 z-50">
+      {/* 1. Top Announcement Bar */}
+      <div className="bg-slate-900 text-white py-2 px-4 text-center text-[10px] md:text-xs font-medium uppercase tracking-widest">
+        {"Need assistance? Our customer support is available 24/7 to help you."}
       </div>
 
-      {/* 2. Main Branding & Search Area */}
-      <div className="bg-white border-b border-gray-100 py-5">
-        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between gap-8">
+      {/* 2. Main Header Bar */}
+      <div className="border-b border-gray-100 py-4">
+        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between gap-4 md:gap-8">
           
-          {/* Logo with modern typography */}
-          <div className="flex items-center gap-2 group cursor-pointer">
-            <div className="bg-sky-600 p-2 rounded-lg shadow-blue-200 shadow-lg group-hover:rotate-6 transition-transform">
-              <ShoppingBag className="text-white" size={24} />
+          {/* Logo with Image */}
+          <Link href="/" className="flex items-center gap-3 group shrink-0">
+            <div className="relative w-10 h-10 md:w-12 md:h-12 transition-transform group-hover:scale-105">
+              <Image 
+                src="/jummall-logo.png" 
+                alt="Jummall Logo" 
+                fill 
+                className="object-contain"
+                priority
+              />
             </div>
-            <span className="text-2xl font-black tracking-tighter text-slate-800">
-              JUMMALL
-            </span>
-          </div>
+            <div className="flex flex-col leading-none">
+              <span className="text-xl md:text-2xl font-black tracking-tighter text-slate-800">JUMMALL</span>
+              <span className="text-[8px] text-gray-400 font-bold uppercase tracking-tighter">One store, endless possibilities</span>
+            </div>
+          </Link>
 
-          {/* Premium Search Bar */}
-          <div className="hidden md:flex flex-1 max-w-2xl relative group">
+          {/* Search Bar */}
+          <div className="hidden md:flex flex-1 max-w-2xl group">
             <div className="flex w-full items-center bg-gray-50 border border-gray-200 rounded-xl overflow-hidden focus-within:border-sky-500 focus-within:ring-4 focus-within:ring-sky-100 transition-all">
               <input 
                 type="text" 
-                placeholder="Search for premium products..." 
-                className="flex-1 bg-transparent px-5 py-3 outline-none text-sm text-slate-700"
+                placeholder="Search for Products..." 
+                className="flex-1 bg-transparent px-5 py-2.5 outline-none text-sm text-slate-700"
               />
-              <div className="h-6 w-[1px] bg-gray-200" />
-              <button className="px-4 flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-slate-800 transition-colors">
-                All Categories <ChevronDown size={14} />
+              <div className="h-5 w-[1px] bg-gray-200" />
+              <button className="px-4 flex items-center gap-2 text-[10px] font-black text-slate-400 hover:text-slate-800 transition-colors uppercase tracking-widest">
+                {"All Categories"} <ChevronDown size={14} />
               </button>
-              <button className="bg-sky-600 p-3 m-1 rounded-lg text-white hover:bg-sky-700 transition-colors">
-                <Search size={20} />
+              <button className="bg-sky-600 p-2.5 m-1 rounded-lg text-white hover:bg-sky-700 transition-colors">
+                <Search size={18} />
               </button>
             </div>
           </div>
 
-          {/* Action Icons */}
-          <div className="flex items-center gap-6">
-            <div className="hidden lg:flex items-center gap-3 cursor-pointer hover:opacity-70 transition-opacity">
-              <div className="bg-gray-100 p-2.5 rounded-full">
-                <User size={20} className="text-slate-600" />
+          {/* User Actions */}
+          <div className="flex items-center gap-4 md:gap-6">
+            <Link href="/login" className="hidden lg:flex items-center gap-3 group cursor-pointer">
+              <div className="bg-slate-50 p-2.5 rounded-full group-hover:bg-sky-100 group-hover:text-sky-600 transition-all">
+                <User size={20} className="text-slate-600 group-hover:text-sky-600" />
               </div>
-              <div className="text-xs">
-                <p className="text-gray-400">Hello, Guest</p>
-                <p className="font-bold text-slate-800">Login / Register</p>
+              <div className="text-left">
+                <p className="text-[10px] text-gray-400 font-bold uppercase leading-none">Hello, Guest</p>
+                <p className="text-xs font-black text-slate-800">Login / Register</p>
               </div>
-            </div>
+            </Link>
             
-            <div className="flex gap-4 border-l pl-6 border-gray-100">
+            <div className="flex gap-3 md:gap-4 border-l pl-4 md:pl-6 border-gray-100">
               <div className="relative cursor-pointer hover:text-sky-600 transition-colors">
-                <Heart size={24} />
-                <span className="absolute -top-2 -right-2 bg-sky-600 text-white text-[10px] rounded-full h-5 w-5 flex items-center justify-center border-2 border-white font-bold">0</span>
+                <Heart size={22} className="text-slate-600 hover:text-sky-600" />
+                <span className="absolute -top-2 -right-2 bg-sky-600 text-white text-[10px] rounded-full h-4 w-4 flex items-center justify-center border-2 border-white font-bold shadow-sm">0</span>
               </div>
               <div className="relative cursor-pointer hover:text-sky-600 transition-colors">
-                <ShoppingBag size={24} />
-                <span className="absolute -top-2 -right-2 bg-slate-800 text-white text-[10px] rounded-full h-5 w-5 flex items-center justify-center border-2 border-white font-bold">0</span>
+                <ShoppingBag size={22} className="text-slate-600 hover:text-sky-600" />
+                <span className="absolute -top-2 -right-2 bg-slate-800 text-white text-[10px] rounded-full h-4 w-4 flex items-center justify-center border-2 border-white font-bold shadow-sm">0</span>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* 3. Navigation Links & Hotline */}
+      {/* 3. Category Bar */}
       <div className="bg-white border-b border-gray-100 hidden md:block">
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
           <div className="flex items-center gap-8">
-            {/* Category Toggle */}
-            <button className="bg-sky-600 text-white px-6 py-4 flex items-center gap-3 font-bold text-sm rounded-t-lg">
+            <button className="bg-sky-600 text-white px-6 py-3.5 flex items-center gap-3 font-black text-[11px] uppercase tracking-widest rounded-t-sm">
               <Menu size={18} />
-              ALL CATEGORIES
-              <ChevronDown size={16} />
+              {"All Categories"}
+              <ChevronDown size={14} />
             </button>
 
-            {/* Nav Links */}
-            <nav className="flex gap-8 text-sm font-semibold text-slate-600">
-              {['Home', 'Shop', 'Blog', 'Contact', 'Sell on Jummall'].map((link) => (
-                <a key={link} href="#" className="hover:text-sky-600 transition-colors relative group py-4">
-                  {link}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-sky-600 transition-all group-hover:w-full" />
-                </a>
+            <nav className="flex gap-8 text-[11px] font-black text-slate-500 uppercase tracking-widest">
+              {['Home', 'Shop', 'Blog', 'Contact', 'Sell on Jummall'].map((item) => (
+                <Link key={item} href={item === 'Home' ? '/' : '#'} className="hover:text-sky-600 transition-colors relative py-4">
+                  {item}
+                </Link>
               ))}
             </nav>
           </div>
 
-          {/* Hotline with Icon */}
-          <div className="flex items-center gap-3 text-slate-800">
+          <div className="flex items-center gap-3">
             <Phone size={18} className="text-sky-600" />
-            <div className="text-right">
-              <p className="text-[10px] text-gray-400 font-bold uppercase leading-none">Hotline:</p>
-              <p className="text-sm font-black">+234 905 599 9998</p>
+            <div className="text-right leading-none">
+              <p className="text-[9px] text-gray-400 font-bold uppercase mb-1">Hotline:</p>
+              <p className="text-sm font-black text-slate-800 tracking-tighter">+234 905 599 9998</p>
             </div>
           </div>
         </div>
