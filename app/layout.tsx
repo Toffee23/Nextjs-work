@@ -1,25 +1,52 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/layout/Navbar"; // Import your new Navbar
+import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
+import NewsletterModal from "./components/modals/NewsLetterModal";
 
-const inter = Inter({ subsets: ["latin"] });
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
-  title: "Jummall | Premium E-commerce",
+  title: "Jummall | Premium Tech Marketplace",
   description: "One store, endless possibilities",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className="h-full">
+      {/* Adding suppressHydrationWarning here prevents extension-based errors 
+          (like Grammarly or DarkReader) from breaking the React hydration process.
+      */}
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-full flex flex-col`}
+        suppressHydrationWarning
+      >
+        {/* Persistent Header */}
         <Navbar />
-        {children}
+        
+        {/* Page Content - flex-grow ensures the footer stays at the bottom */}
+        <main className="flex-grow">
+          {children}
+        </main>
+        
+        {/* Persistent Footer */}
+        <Footer />
+
+        {/* This modal will trigger automatically based on the logic in its component */}
+        <NewsletterModal />
       </body>
     </html>
   );

@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Navbar() {
   return (
-    <header className="w-full bg-white font-sans sticky top-0 z-50">
+    <header className="w-full bg-white font-sans sticky top-0 z-50 shadow-sm">
       {/* 1. Top Announcement Bar */}
       <div className="bg-slate-900 text-white py-2 px-4 text-center text-[10px] md:text-xs font-medium uppercase tracking-widest">
         {"Need assistance? Our customer support is available 24/7 to help you."}
@@ -14,9 +14,9 @@ export default function Navbar() {
       <div className="border-b border-gray-100 py-4">
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between gap-4 md:gap-8">
           
-          {/* Logo with Image */}
-          <Link href="/" className="flex items-center gap-3 group shrink-0">
-            <div className="relative w-10 h-10 md:w-12 md:h-12 transition-transform group-hover:scale-105">
+          {/* Logo - Full Image */}
+          <Link href="/" className="group shrink-0">
+            <div className="relative w-[120px] h-[40px] md:w-[150px] md:h-[50px] transition-transform group-hover:scale-105">
               <Image 
                 src="/jummall-logo.png" 
                 alt="Jummall Logo" 
@@ -25,15 +25,11 @@ export default function Navbar() {
                 priority
               />
             </div>
-            <div className="flex flex-col leading-none">
-              <span className="text-xl md:text-2xl font-black tracking-tighter text-slate-800">JUMMALL</span>
-              <span className="text-[8px] text-gray-400 font-bold uppercase tracking-tighter">One store, endless possibilities</span>
-            </div>
           </Link>
 
-          {/* Search Bar */}
+          {/* Search Bar - Hidden on small mobile, visible on tablet+ */}
           <div className="hidden md:flex flex-1 max-w-2xl group">
-            <div className="flex w-full items-center bg-gray-50 border border-gray-200 rounded-xl overflow-hidden focus-within:border-sky-500 focus-within:ring-4 focus-within:ring-sky-100 transition-all">
+            <div className="flex w-full items-center bg-gray-50 border border-gray-200 rounded-xl overflow-hidden focus-within:border-sky-500 focus-within:ring-4 focus-within:ring-sky-50 transition-all">
               <input 
                 type="text" 
                 placeholder="Search for Products..." 
@@ -56,8 +52,8 @@ export default function Navbar() {
                 <User size={20} className="text-slate-600 group-hover:text-sky-600" />
               </div>
               <div className="text-left">
-                <p className="text-[10px] text-gray-400 font-bold uppercase leading-none">Hello, Guest</p>
-                <p className="text-xs font-black text-slate-800">Login / Register</p>
+                <p className="text-[10px] text-gray-400 font-bold uppercase leading-none">{"Hello, Guest"}</p>
+                <p className="text-xs font-black text-slate-800">{"Login / Register"}</p>
               </div>
             </Link>
             
@@ -79,12 +75,14 @@ export default function Navbar() {
       <div className="bg-white border-b border-gray-100 hidden md:block">
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
           <div className="flex items-center gap-8">
+            {/* Category Button */}
             <button className="bg-sky-600 text-white px-6 py-3.5 flex items-center gap-3 font-black text-[11px] uppercase tracking-widest rounded-t-sm">
               <Menu size={18} />
               {"All Categories"}
               <ChevronDown size={14} />
             </button>
 
+            {/* Links */}
             <nav className="flex gap-8 text-[11px] font-black text-slate-500 uppercase tracking-widest">
               {['Home', 'Shop', 'Blog', 'Contact', 'Sell on Jummall'].map((item) => (
                 <Link key={item} href={item === 'Home' ? '/' : '#'} className="hover:text-sky-600 transition-colors relative py-4">
@@ -94,11 +92,12 @@ export default function Navbar() {
             </nav>
           </div>
 
+          {/* Hotline */}
           <div className="flex items-center gap-3">
             <Phone size={18} className="text-sky-600" />
             <div className="text-right leading-none">
-              <p className="text-[9px] text-gray-400 font-bold uppercase mb-1">Hotline:</p>
-              <p className="text-sm font-black text-slate-800 tracking-tighter">+234 905 599 9998</p>
+              <p className="text-[9px] text-gray-400 font-bold uppercase mb-1">{"Hotline:"}</p>
+              <p className="text-sm font-black text-slate-800 tracking-tighter">{"+234 905 599 9998"}</p>
             </div>
           </div>
         </div>
