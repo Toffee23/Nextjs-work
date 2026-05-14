@@ -45,65 +45,67 @@ export default function BlogPage() {
   return (
     <main className="bg-white min-h-screen">
       
-      {/* --- BREADCRUMB HEADER (Full Background Image) --- */}
-            <div className="relative h-64 md:h-32 md:mb-32 w-full flex items-center overflow-hidden">
-              {/* Background Image using fill and object-cover */}
-              <Image 
-                src="/breadcrumb-1.jpg" 
-                alt="Login Header Background" 
-                fill 
-                className="object-cover"
-                priority
-              />
-              {/* Darker overlay for text readability if needed */}
-              <div className="absolute inset-0 bg-white/20" />
-              
-              <div className="relative z-10 max-w-7xl mx-auto w-full px-6 md:px-16">
-                <h1 className="text-5xl   tracking-tight text-[#0F172A]">Blog</h1>
-                <p className="text-sm text-slate-500 mt-2   uppercase tracking-widest flex items-center gap-2">
-                  Home <span className="text-slate-300">/</span> <span className="text-sky-600">Blog</span>
-                </p>
-              </div>
-            </div>
+      {/* --- BREADCRUMB HEADER --- */}
+      <div className="relative h-64 md:h-48 w-full flex items-center overflow-hidden">
+        <Image 
+          src="/breadcrumb-1.jpg" 
+          alt="Blog Header Background" 
+          fill 
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-white/20" />
+        
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 md:px-16">
+          <h1 className="text-5xl   tracking-tight text-[#0F172A] font-montserrat">Blog</h1>
+          <p className="text-sm text-slate-500 mt-2 uppercase tracking-widest flex items-center gap-2  ">
+            <Link href="/" className="hover:text-[#149fcd] transition-colors">Home</Link> 
+            <span className="text-slate-300">/</span> 
+            <span className="text-sky-600">Blog</span>
+          </p>
+        </div>
+      </div>
 
       <section className="max-w-7xl mx-auto px-4 py-16">
         <div className="flex flex-col lg:flex-row gap-12">
           
           {/* --- MAIN CONTENT (LEFT) --- */}
           <div className="lg:w-2/3">
-            {/* Filter Bar */}
             <div className="flex items-center justify-between border border-slate-100 rounded-lg p-4 mb-8 text-sm font-medium text-slate-400">
-              <p>Showing 1 to 4 of 4 results</p>
+              <p>Showing 1 to {blogPosts.length} of {blogPosts.length} results</p>
               <div className="flex items-center gap-4">
                 <Grid size={18} className="text-[#149fcd] cursor-pointer" />
                 <List size={18} className="hover:text-[#149fcd] cursor-pointer" />
               </div>
             </div>
 
-            {/* Blog Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {blogPosts.map((post) => (
                 <article key={post.id} className="group border border-slate-50 rounded-2xl overflow-hidden hover:shadow-xl transition-all">
-                  <div className="relative h-52 w-full overflow-hidden">
-                    <Image 
-                      src={post.image} 
-                      alt={post.title} 
-                      fill 
-                      className="object-cover group-hover:scale-105 transition-transform duration-500" 
-                    />
-                  </div>
+                  <Link href={`/blog/${post.id}`}>
+                    <div className="relative h-52 w-full overflow-hidden">
+                      <Image 
+                        src={post.image} 
+                        alt={post.title} 
+                        fill 
+                        className="object-cover group-hover:scale-105 transition-transform duration-500" 
+                      />
+                    </div>
+                  </Link>
                   <div className="p-6">
-                    <div className="flex items-center gap-4 text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-4">
+                    <div className="flex items-center gap-4 text-[11px]   text-slate-400 uppercase tracking-widest mb-4">
                       <span className="flex items-center gap-1"><Calendar size={14} /> {post.date}</span>
                       <span className="flex items-center gap-1"><User size={14} /> {post.author}</span>
                     </div>
-                    <h2 className="text-xl font-black text-slate-900 leading-tight mb-4 group-hover:text-[#149fcd] transition-colors">
-                      {post.title}
-                    </h2>
+                    <Link href={`/blog/${post.id}`}>
+                      <h2 className="text-xl   text-slate-900 leading-tight mb-4 group-hover:text-[#149fcd] transition-colors">
+                        {post.title}
+                      </h2>
+                    </Link>
                     <p className="text-sm text-slate-500 leading-relaxed mb-6 line-clamp-2">
                       {post.excerpt}
                     </p>
-                    <Link href={`/blog/${post.id}`} className="inline-flex items-center gap-2 text-sm font-black text-slate-400 group-hover:text-[#149fcd] transition-colors">
+                    <Link href={`/blog/${post.id}`} className="inline-flex items-center gap-2 text-sm   text-slate-400 group-hover:text-[#149fcd] transition-colors">
                       Read More <ArrowRight size={16} />
                     </Link>
                   </div>
@@ -114,8 +116,6 @@ export default function BlogPage() {
 
           {/* --- SIDEBAR (RIGHT) --- */}
           <aside className="lg:w-1/3 space-y-12">
-            
-            {/* Search */}
             <div>
               <div className="relative">
                 <input 
@@ -127,36 +127,34 @@ export default function BlogPage() {
               </div>
             </div>
 
-            {/* Latest Posts */}
             <div className="border border-slate-50 rounded-2xl p-8">
-              <h3 className="text-lg font-black text-slate-900 mb-8">Latest Posts</h3>
+              <h3 className="text-lg   text-slate-900 mb-8">Latest Posts</h3>
               <div className="space-y-6">
                 {blogPosts.slice(0, 3).map((post) => (
-                  <div key={post.id} className="flex gap-4 items-center group cursor-pointer">
+                  <Link key={post.id} href={`/blog/${post.id}`} className="flex gap-4 items-center group">
                     <div className="relative w-16 h-16 rounded-xl overflow-hidden shrink-0">
                       <Image src={post.image} alt="" fill className="object-cover" />
                     </div>
                     <div>
-                      <p className="text-[10px] font-bold text-slate-400 mb-1">{post.date}</p>
-                      <h4 className="text-sm font-bold text-slate-800 leading-snug group-hover:text-[#149fcd] transition-colors line-clamp-2">
+                      <p className="text-[10px]   text-slate-400 mb-1">{post.date}</p>
+                      <h4 className="text-sm   text-slate-800 leading-snug group-hover:text-[#149fcd] transition-colors line-clamp-2">
                         {post.title}
                       </h4>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>
 
-            {/* Categories */}
             <div className="border border-slate-50 rounded-2xl p-8">
-              <h3 className="text-lg font-black text-slate-900 mb-8">Categories</h3>
+              <h3 className="text-lg   text-slate-900 mb-8">Categories</h3>
               <ul className="space-y-4">
                 {[
                   { name: "Tech & Gadgets", count: 1 },
                   { name: "Home & Living", count: 1 },
                   { name: "Shopping & Savings", count: 2 }
                 ].map((cat) => (
-                  <li key={cat.name} className="flex items-center justify-between text-sm font-bold text-slate-500 hover:text-[#149fcd] cursor-pointer transition-colors">
+                  <li key={cat.name} className="flex items-center justify-between text-sm   text-slate-500 hover:text-[#149fcd] cursor-pointer transition-colors">
                     <span>• {cat.name}</span>
                     <span>({cat.count})</span>
                   </li>
@@ -164,22 +162,19 @@ export default function BlogPage() {
               </ul>
             </div>
 
-            {/* Popular Tags */}
             <div>
-              <h3 className="text-lg font-black text-slate-900 mb-8">Popular Tags</h3>
+              <h3 className="text-lg   text-slate-900 mb-8">Popular Tags</h3>
               <div className="flex flex-wrap gap-2">
                 {["online shopping", "deals", "ecommerce", "tablets", "digital retail", "technology trends"].map((tag) => (
-                  <span key={tag} className="px-4 py-2 border border-slate-100 rounded-lg text-xs font-bold text-slate-400 hover:bg-[#149fcd] hover:text-white cursor-pointer transition-all">
+                  <span key={tag} className="px-4 py-2 border border-slate-100 rounded-lg text-xs   text-slate-400 hover:bg-[#149fcd] hover:text-white cursor-pointer transition-all">
                     {tag}
                   </span>
                 ))}
               </div>
             </div>
-
           </aside>
         </div>
       </section>
-
     </main>
   );
 }
