@@ -67,10 +67,10 @@ export default function Navbar() {
                     </div>
                     <div className="text-left">
                       <p className="text-[10px] text-gray-400 font-medium leading-none mb-1">
-                        neelorneels@gmail.com
+                        johndoe@jummall.com
                       </p>
                       <div className="flex items-center gap-1">
-                        <span className="text-[13px] font-bold text-slate-800">Hello, Neel Ade</span>
+                        <span className="text-[13px] font-bold text-slate-800">Hello, John Doe</span>
                         <ChevronDown size={12} className="text-slate-400 group-hover:text-[#149fcd] transition-colors" />
                       </div>
                     </div>

@@ -46,7 +46,7 @@ export default function AccountSettings() {
             <label className="text-[11px] font-bold text-slate-400 uppercase">Email</label>
             <input 
               type="email" 
-              defaultValue="neelorneels@gmail.com"
+              defaultValue="johndoe@jummall.com"
               disabled
               className="w-full border border-slate-100 bg-slate-50 rounded-sm px-4 py-2.5 text-sm text-slate-400 cursor-not-allowed"
             />

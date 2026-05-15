@@ -49,7 +49,7 @@ export default async function InvoiceDetailPage({ params }: { params: Promise<{ 
               <span className="text-slate-700">Neel Ade</span>
               
               <span className="text-slate-400">Email:</span>
-              <span className="text-slate-700">neelorneels@gmail.com</span>
+              <span className="text-slate-700">johndoe@jummall.com</span>
               
               <span className="text-slate-400">Phone:</span>
               <span className="text-slate-700">+2349060690604</span>
