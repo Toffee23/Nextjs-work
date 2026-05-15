@@ -2,18 +2,22 @@
 
 import { 
   Search, ShoppingBag, User, Heart, Menu, Phone, ChevronDown, 
-  
   ArrowLeftRight
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [isSearchDropdownOpen, setIsSearchDropdownOpen] = useState(false);
   const [selectedSearchCat] = useState("All Categories");
   const [isSticky, setIsSticky] = useState(false);
+
+  // Check if current route is within the customer dashboard
+  const isDashboard = pathname.startsWith('/customer');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,8 +30,6 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  
 
   return (
     <div className="relative h-[160px] md:h-[160px]"> 
@@ -54,15 +56,43 @@ export default function Navbar() {
                 </div>
               </div>
 
-              {/* ACTION AREA (Icons moved beside Login) */}
+              {/* ACTION AREA */}
               <div className="flex items-center gap-6">
-                <Link href="/login" className="flex items-center gap-3 border-r pr-6 border-gray-100">
-                  <div className="bg-white border border-gray-200 p-2.5 rounded-full text-slate-600"><User size={22} /></div>
-                  <div className="text-left text-slate-900">
-                    <p className="text-[10px] text-gray-500 leading-none mb-1">Hello, Guest</p>
-                    <p className="text-sm ">Login / Register</p>
+                
+                {isDashboard ? (
+                  /* --- LOGGED IN CUSTOMER STATE --- */
+                  <div className="flex items-center gap-3 border-r pr-6 border-gray-100 group relative cursor-pointer">
+                    <div className="relative w-10 h-10 rounded-full bg-[#3b4d9b] flex items-center justify-center border-2 border-slate-50 overflow-hidden shrink-0">
+                      <span className="text-white font-bold text-sm">N</span>
+                    </div>
+                    <div className="text-left">
+                      <p className="text-[10px] text-gray-400 font-medium leading-none mb-1">
+                        neelorneels@gmail.com
+                      </p>
+                      <div className="flex items-center gap-1">
+                        <span className="text-[13px] font-bold text-slate-800">Hello, Neel Ade</span>
+                        <ChevronDown size={12} className="text-slate-400 group-hover:text-[#149fcd] transition-colors" />
+                      </div>
+                    </div>
+
+                    {/* Simple Dropdown Overlay */}
+                    <div className="absolute top-full right-0 mt-2 w-48 bg-white border border-slate-100 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all rounded-sm py-2 z-50">
+                      <Link href="/customer/overview" className="block px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-50 hover:text-[#149fcd]">Dashboard</Link>
+                      <Link href="/customer/settings" className="block px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-50 hover:text-[#149fcd]">Account Settings</Link>
+                      <hr className="my-1 border-slate-50" />
+                      <button className="w-full text-left px-4 py-2 text-xs font-bold text-red-500 hover:bg-red-50">Logout</button>
+                    </div>
                   </div>
-                </Link>
+                ) : (
+                  /* --- GUEST STATE --- */
+                  <Link href="/login" className="flex items-center gap-3 border-r pr-6 border-gray-100">
+                    <div className="bg-white border border-gray-200 p-2.5 rounded-full text-slate-600"><User size={22} /></div>
+                    <div className="text-left text-slate-900">
+                      <p className="text-[10px] text-gray-500 leading-none mb-1">Hello, Guest</p>
+                      <p className="text-sm ">Login / Register</p>
+                    </div>
+                  </Link>
+                )}
 
                 <div className="flex items-center gap-5">
                   <div className="relative cursor-pointer group">
@@ -75,7 +105,7 @@ export default function Navbar() {
                   </div>
                   <div className="relative cursor-pointer group">
                     <ShoppingBag size={24} className="text-slate-800 group-hover:text-[#149fcd] transition-colors" />
-                    <span className="absolute -top-2 -right-2 bg-[#149fcd] text-white text-[9px] rounded-full h-4 w-4 flex items-center justify-center border border-white">0</span>
+                    <span className="absolute -top-2 -right-2 bg-[#149fcd] text-white text-[9px] rounded-full h-4 w-4 flex items-center justify-center border border-white">2</span>
                   </div>
                 </div>
               </div>
@@ -95,7 +125,6 @@ export default function Navbar() {
                       <Image src="/jummall-logo.png" alt="Jummall Logo" fill className="object-contain" />
                     </div>
                   </Link>
-                  {/* Sticky Search bar would usually go here in many themes */}
                 </>
               )}
 
@@ -119,7 +148,7 @@ export default function Navbar() {
                   <Link 
                     key={item.name} 
                     href={item.path} 
-                    className="hover:text-[#149fcd] transition-colors"
+                    className="hover:text-[#149fcd] transition-colors font-medium"
                   >
                     {item.name}
                   </Link>
@@ -138,13 +167,20 @@ export default function Navbar() {
                 </div>
               )}
 
-              {/* If sticky, we can show the icons here too if desired, 
-                  but per the request, the primary change is the header bar */}
               {isSticky && (
                  <div className="flex items-center gap-5">
-                    <ArrowLeftRight size={22} className="text-slate-800" />
-                    <Heart size={22} className="text-slate-800" />
-                    <ShoppingBag size={22} className="text-slate-800" />
+                    <div className="relative cursor-pointer">
+                      <ArrowLeftRight size={22} className="text-slate-800" />
+                      <span className="absolute -top-2 -right-2 bg-[#149fcd] text-white text-[8px] rounded-full h-3.5 w-3.5 flex items-center justify-center border border-white">1</span>
+                    </div>
+                    <div className="relative cursor-pointer">
+                      <Heart size={22} className="text-slate-800" />
+                      <span className="absolute -top-2 -right-2 bg-[#149fcd] text-white text-[8px] rounded-full h-3.5 w-3.5 flex items-center justify-center border border-white">0</span>
+                    </div>
+                    <div className="relative cursor-pointer">
+                      <ShoppingBag size={22} className="text-slate-800" />
+                      <span className="absolute -top-2 -right-2 bg-[#149fcd] text-white text-[8px] rounded-full h-3.5 w-3.5 flex items-center justify-center border border-white">2</span>
+                    </div>
                  </div>
               )}
             </div>
