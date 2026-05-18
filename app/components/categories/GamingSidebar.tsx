@@ -3,26 +3,7 @@
 import { Search, ChevronDown, ChevronLeft, Minus } from "lucide-react";
 import Link from "next/link";
 
-export default function ComputersSidebar() {
-  const computerAccessories = [
-    "Laptop Bags & Sleeves",
-    "Laptop Stands",
-    "Networking Devices",
-    "Extension cords",
-    "Surge Protectors",
-    "UPS",
-    "Laptop Chargers",
-    "Memory Cards",
-    "Card Readers",
-    "USB Flash Drives",
-    "Adapters & Converters",
-    "Ethernet (LAN) cables",
-    "HDMI Cables",
-    "Webcams",
-    "Speakers",
-    "Batteries"
-  ];
-
+export default function GamingSidebar() {
   const colors = [
     { name: "Blue", bg: "bg-blue-600" },
     { name: "Red", bg: "bg-red-600" },
@@ -40,7 +21,7 @@ export default function ComputersSidebar() {
   return (
     <aside className="space-y-6 w-full max-w-[280px]">
       
-      {/* 1. Search Box input */}
+      {/* 1. Search Box Input */}
       <div className="relative border border-slate-200 rounded-sm bg-white overflow-hidden focus-within:border-[#149fcd] transition-colors">
         <input 
           type="text" 
@@ -66,46 +47,37 @@ export default function ComputersSidebar() {
             </Link>
 
             <div className="pl-1 space-y-3">
-              {/* Main Computers Branch */}
+              {/* Level 1: Gaming Parent Branch */}
               <div className="flex items-center justify-between text-[#149fcd] font-bold">
                 <span className="flex items-center gap-1.5">
                   <span className="w-1 h-1 rounded-full bg-[#149fcd]" />
-                  Computers
+                  Gaming
                 </span>
-                <ChevronDown size={14} className="text-slate-400" />
+                <ChevronDown size={14} className="text-[#149fcd]" />
               </div>
 
-              {/* Updated Category Links following /categories/[name] static path routing convention */}
-              <div className="pl-4 space-y-3 border-l border-slate-200/60 text-slate-400 font-normal">
-                <Link href="/categories/computers/desktop" className="block hover:text-[#149fcd] transition-colors">
-                  Desktop
-                </Link>
-                <Link href="/categories/computers/laptop" className="block hover:text-[#149fcd] transition-colors">
-                  Laptop
-                </Link>
-                
-                {/* Nested Computer Accessories Area */}
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between text-slate-500 font-medium">
-                    <span>Computer Accessories</span>
-                    <Minus size={10} className="text-slate-300" />
-                  </div>
-                  
-                  {/* Scrollable sub-list block matching height parameters */}
-                  <div className="pl-3 space-y-2.5 max-h-[220px] overflow-y-auto custom-sidebar-scroll text-slate-400 font-normal text-[11px] pt-1">
-                    {computerAccessories.map((item, idx) => (
-                      <Link 
-                        key={idx} 
-                        href={`/categories/computer-accessories/${item.toLowerCase().replace(/ & /g, '-').replace(/\s+/g, '-')}`}
-                        className="block hover:text-[#149fcd] transition-colors"
-                      >
-                        {item}
-                      </Link>
-                    ))}
-                  </div>
+              {/* Level 2: Gaming Console Expandable Row */}
+              <div className="pl-4 space-y-3 border-l border-slate-200/60 font-medium">
+                <div className="flex items-center justify-between text-slate-500 font-semibold">
+                  <span>Gaming Console</span>
+                  <ChevronDown size={14} className="text-slate-400" />
                 </div>
 
+                {/* Level 3: Active Subcategory (Playstation) */}
+                <div className="pl-4">
+                  <Link href="/categories/gaming?subcategory=playstation" className="block text-[#149fcd] font-bold">
+                    Playstation
+                  </Link>
+                </div>
+
+                {/* Level 2 Alternative Branch: Gaming Accessories */}
+                <div className="space-y-2 pt-1">
+                  <Link href="/categories/gaming?subcategory=gaming-accessories" className="block text-slate-400 hover:text-[#149fcd] transition-colors font-semibold">
+                    Gaming Accessories
+                  </Link>
+                </div>
               </div>
+
             </div>
           </div>
         </section>
@@ -121,7 +93,7 @@ export default function ComputersSidebar() {
             <div className="absolute right-0 -top-1 w-3 h-3 bg-white border-2 border-[#149fcd] rounded-full cursor-pointer shadow-sm" />
           </div>
           <p className="mt-4 text-[11px] font-bold text-slate-700">
-            ₦0.00 — ₦213,999.00
+            ₦0.00 — ₦750,000.00
           </p>
         </section>
 
@@ -138,7 +110,7 @@ export default function ComputersSidebar() {
           </label>
         </section>
 
-        {/* 5. Color Palette Matrix Toggles */}
+        {/* 5. Color Palette Matrix */}
         <section>
           <h3 className="font-bold text-slate-800 text-sm mb-4 border-b border-slate-200 pb-2 uppercase tracking-wider text-[11px]">
             Color
@@ -155,7 +127,7 @@ export default function ComputersSidebar() {
           </div>
         </section>
 
-        {/* 6. Weight Option List */}
+        {/* 6. Weight Option */}
         <section>
           <h3 className="font-bold text-slate-800 text-sm mb-4 border-b border-slate-200 pb-2 uppercase tracking-wider text-[11px]">
             Weight
@@ -166,7 +138,7 @@ export default function ComputersSidebar() {
           </label>
         </section>
 
-        {/* 7. Size Option List */}
+        {/* 7. Size Options */}
         <section>
           <h3 className="font-bold text-slate-800 text-sm mb-4 border-b border-slate-200 pb-2 uppercase tracking-wider text-[11px]">
             Size
