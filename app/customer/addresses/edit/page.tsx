@@ -49,7 +49,7 @@ export default function EditAddress() {
               <label className="text-[11px] font-bold text-slate-400 uppercase">Email</label>
               <input 
                 type="email" 
-                defaultValue="johndoe@jummall.com"
+                defaultValue="neelorneels@gmail.com"
                 className="w-full border border-slate-200 rounded-sm px-4 py-3 text-sm text-slate-700 outline-none focus:border-[#149fcd] transition-colors"
               />
             </div>

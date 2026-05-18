@@ -85,7 +85,7 @@ export default function VendorTestimonials() {
                 <User size={20} />
               </div>
               <div className="text-left">
-                <p className="text-sm   text-slate-800">{testimonials[current].name}</p>
+                <p className="text-sm font-black text-slate-800">{testimonials[current].name}</p>
                 <p className="text-[10px]   text-slate-400 uppercase tracking-tight">
                   {testimonials[current].role}
                 </p>

@@ -37,7 +37,7 @@ export default function VendorFaq() {
     <section className="max-w-7xl mx-auto px-4 py-24">
       {/* Header matching image_1e1e5b.png */}
       <div className="mb-12">
-        <h2 className="text-[40px]   text-[#001F3F] mb-4">
+        <h2 className="text-[40px] font-black text-[#001F3F] mb-4">
           Frequently Asked Questions
         </h2>
         <p className="text-[#55585B] text-lg max-w-5xl leading-relaxed">

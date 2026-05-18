@@ -4,7 +4,7 @@ import HeroSlider from "./components/home/HeroSlider";
 import CategoryShowcase from "./components/home/CategoryShowcase";
 import FeatureSection from "./components/home/FeatureSection";
 import TrendingProducts from "./components/home/TrendingProducts";
-import AdBanner from "./components/home/AdBnner";
+import AdBanner from "./components/home/AdBanner";
 import TabletHero from "./components/home/TabletHero";
 import GadgetSection from "./components/home/GadgetSection";
 import NewArrivals from "./components/home/NewArrivals";

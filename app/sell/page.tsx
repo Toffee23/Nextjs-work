@@ -70,7 +70,7 @@ export default function SellOnJummall() {
               <div className="relative z-10 max-w-7xl mx-auto w-full px-6 md:px-16">
                 <h1 className="text-5xl   tracking-tight text-[#0F172A]">Sell on Jummall</h1>
                 <p className="text-sm text-slate-500 mt-2   uppercase tracking-widest flex items-center gap-2">
-                  Home <span className="text-slate-300">/</span> <span className="text-sky-600">Sell on Jummall</span>
+                  Home <span className="text-slate-300">/</span> <span className="text-sky-600">Login</span>
                 </p>
               </div>
             </div>

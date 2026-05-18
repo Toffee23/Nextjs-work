@@ -28,7 +28,7 @@ export default function HowItWorks() {
   return (
     <section className="max-w-7xl mx-auto px-4 py-20">
       <div className="mb-12">
-        <h2 className="text-4xl   text-[#001F3F] font-montserrat">
+        <h2 className="text-4xl font-black text-[#001F3F] font-montserrat">
           How It Works (Step-by-Step Guide)
         </h2>
       </div>

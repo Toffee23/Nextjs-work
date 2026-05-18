@@ -21,7 +21,7 @@ export default function AddressBooks() {
           <div className="border border-slate-100 rounded-sm overflow-hidden flex flex-col">
             <div className="p-6 space-y-5 flex-1">
               <div className="flex justify-between items-center">
-                <h3 className="font-bold text-[#149fcd] text-sm">John Doe</h3>
+                <h3 className="font-bold text-[#149fcd] text-sm">Neel Ade</h3>
                 <span className="bg-[#149fcd] text-white text-[9px] font-bold px-2 py-0.5 rounded-sm uppercase">
                   Default
                 </span>

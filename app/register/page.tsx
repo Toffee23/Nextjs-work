@@ -1,16 +1,20 @@
 'use client';
 
-import { Lock, Eye, EyeOff, ArrowRight } from "lucide-react";
+import { Lock, Eye, EyeOff, ArrowRight, User, Mail, UserPlus, Phone } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const router = useRouter();
+
+  // Define independent visibility toggle states for both fields
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   // Handle mock submission to bypass missing API endpoints
-  const handleLogin = (e: React.FormEvent) => {
+  const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
     // Force route straight to customer dashboard layout
     router.push('/customer/overview');
@@ -19,11 +23,11 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-[#F8F9FA] text-slate-900 font-sans flex flex-col">
       
-      {/* --- BREADCRUMB HEADER (Full Background Image) --- */}
+      {/* --- BREADCRUMB HEADER --- */}
       <div className="relative h-64 md:h-32 md:mb-32 w-full flex items-center overflow-hidden">
         <Image 
           src="/breadcrumb-1.jpg" 
-          alt="Login Header Background" 
+          alt="Register Header Background" 
           fill 
           className="object-cover"
           priority
@@ -31,9 +35,9 @@ export default function LoginPage() {
         <div className="absolute inset-0 bg-white/20" />
         
         <div className="relative z-10 max-w-7xl mx-auto w-full px-6 md:px-16">
-          <h1 className="text-5xl tracking-tight text-[#0F172A]">Login</h1>
+          <h1 className="text-5xl tracking-tight text-[#0F172A]">Register</h1>
           <p className="text-sm text-slate-500 mt-2 uppercase tracking-widest flex items-center gap-2">
-            Home <span className="text-slate-300">/</span> <span className="text-sky-600">Login</span>
+            Home <span className="text-slate-300">/</span> <span className="text-sky-600">Register</span>
           </p>
         </div>
       </div>
@@ -54,49 +58,62 @@ export default function LoginPage() {
              </div>
           </div>
 
-          {/* RIGHT SIDE: LOGIN FORM */}
+          {/* RIGHT SIDE: REGISTER FORM */}
           <div className="w-full md:w-1/2 p-8 md:p-16 border-l border-gray-50 flex flex-col justify-center">
             <div className="flex items-start gap-4 mb-8">
               <div className="bg-sky-50 p-2 rounded-lg text-sky-500 mt-1">
-                <Lock size={20} />
+                <UserPlus size={20} />
               </div>
               <div>
-                <h2 className="text-2xl text-slate-800 tracking-tight">Login to your account</h2>
+                <h2 className="text-2xl text-slate-800 tracking-tight">Register an account</h2>
                 <p className="text-sm text-slate-500 mt-2 leading-relaxed">
                   {"Your personal data will be used to support your experience throughout this website, to manage access to your account."}
                 </p>
               </div>
             </div>
 
-            {/* Linked real functional submission handler directly here */}
-            <form className="space-y-6" onSubmit={handleLogin}>
+            {/* Linked functional submission handler directly here */}
+            <form className="space-y-5" onSubmit={handleRegister}>
+              {/* Full Name */}
               <div>
-                <label className="text-xs text-slate-700 mb-2 block ml-1">
-                  Email or phone
-                </label>
+                <label className="text-xs text-slate-700 mb-1.5 block ml-1">Full name <span className="text-red-500">*</span></label>
                 <div className="relative group">
-                  <UserIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-sky-600 transition-colors" size={18} />
-                  <input 
-                    type="text" 
-                    placeholder="Email or Phone number" 
-                    className="w-full bg-white border border-gray-200 rounded-xl py-4 pl-12 pr-4 outline-none focus:border-sky-500 focus:ring-4 focus:ring-sky-50 transition-all text-sm"
-                  />
+                  <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-sky-600 transition-colors" size={18} />
+                  <input type="text" placeholder="Your full name" className="w-full bg-white border border-gray-200 rounded-xl py-3.5 pl-12 pr-4 outline-none focus:border-sky-500 focus:ring-4 focus:ring-sky-50 transition-all text-sm" />
                 </div>
               </div>
 
+              {/* Email */}
               <div>
-                <label className="text-xs text-slate-700 mb-2 block ml-1">
-                  Password
-                </label>
+                <label className="text-xs text-slate-700 mb-1.5 block ml-1">Email <span className="text-red-500">*</span></label>
+                <div className="relative group">
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-sky-600 transition-colors" size={18} />
+                  <input type="email" placeholder="Your email" className="w-full bg-white border border-gray-200 rounded-xl py-3.5 pl-12 pr-4 outline-none focus:border-sky-500 focus:ring-4 focus:ring-sky-50 transition-all text-sm" />
+                </div>
+              </div>
+
+              {/* Phone */}
+              <div>
+                <label className="text-xs text-slate-700 mb-1.5 block ml-1">Phone <span className="text-red-500">*</span></label>
+                <div className="relative group flex">
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-1.5 text-xs text-slate-400 border-r pr-2 h-5 border-gray-200 group-focus-within:text-sky-600 transition-colors">
+                    <Phone size={14} className="text-gray-400" />
+                    <span>+234</span>
+                  </div>
+                  <input type="tel" placeholder="Phone number" className="w-full bg-white border border-gray-200 rounded-xl py-3.5 pl-24 pr-4 outline-none focus:border-sky-500 focus:ring-4 focus:ring-sky-50 transition-all text-sm" />
+                </div>
+              </div>
+
+              {/* Password */}
+              <div>
+                <label className="text-xs text-slate-700 mb-1.5 block ml-1">Password <span className="text-red-500">*</span></label>
                 <div className="relative group">
                   <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-sky-600 transition-colors" size={18} />
-                  
                   <input 
                     type={showPassword ? "text" : "password"} 
                     placeholder="Password" 
-                    className="w-full bg-white border border-gray-200 rounded-xl py-4 pl-12 pr-12 outline-none focus:border-sky-500 focus:ring-4 focus:ring-sky-50 transition-all text-sm"
+                    className="w-full bg-white border border-gray-200 rounded-xl py-3.5 pl-12 pr-12 outline-none focus:border-sky-500 focus:ring-4 focus:ring-sky-50 transition-all text-sm" 
                   />
-                  
                   <button 
                     type="button" 
                     onClick={() => setShowPassword(!showPassword)}
@@ -107,36 +124,62 @@ export default function LoginPage() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between text-xs font-medium">
-                <label className="flex items-center gap-2 cursor-pointer group">
-                  <input type="checkbox" className="w-4 h-4 rounded border-gray-300 text-sky-600 focus:ring-sky-500" />
-                  <span className="text-slate-500 group-hover:text-slate-800 transition-colors">Remember me</span>
-                </label>
-                <a href="./forgot-password" className="text-sky-600 hover:underline">Forgot password?</a>
+              {/* Password Confirmation */}
+              <div>
+                <label className="text-xs text-slate-700 mb-1.5 block ml-1">Password confirmation <span className="text-red-500">*</span></label>
+                <div className="relative group">
+                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-sky-600 transition-colors" size={18} />
+                  <input 
+                    type={showConfirmPassword ? "text" : "password"} 
+                    placeholder="Password confirmation" 
+                    className="w-full bg-white border border-gray-200 rounded-xl py-3.5 pl-12 pr-12 outline-none focus:border-sky-500 focus:ring-4 focus:ring-sky-50 transition-all text-sm" 
+                  />
+                  <button 
+                    type="button" 
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-slate-600 focus:outline-none"
+                  >
+                    {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  </button>
+                </div>
               </div>
 
-              {/* Ensure button type is explicit for form action execution */}
-              <button type="submit" className="w-full bg-[#0F172A] text-white py-4.5 rounded-xl text-sm uppercase tracking-widest hover:bg-sky-600 transition-all shadow-lg shadow-slate-200 flex items-center justify-center gap-2">
-                Login <ArrowRight size={18} />
+              {/* Register as Radio Toggle */}
+              <div className="py-2 ml-1">
+                <p className="text-[10px] uppercase text-slate-400 tracking-widest mb-3">Register as:</p>
+                <div className="flex gap-6">
+                  <label className="flex items-center gap-2 cursor-pointer group">
+                    <input type="radio" name="role" defaultChecked className="w-4 h-4 text-sky-600 focus:ring-sky-500 border-gray-300" />
+                    <span className="text-xs text-slate-600 group-hover:text-slate-900 transition-colors">I am a customer</span>
+                  </label>
+                  <label className="flex items-center gap-2 cursor-pointer group">
+                    <input type="radio" name="role" className="w-4 h-4 text-sky-600 focus:ring-sky-500 border-gray-300" />
+                    <span className="text-xs text-slate-600 group-hover:text-slate-900 transition-colors">I am a vendor</span>
+                  </label>
+                </div>
+              </div>
+
+              {/* Terms Checkbox */}
+              <label className="flex items-center gap-2 cursor-pointer group ml-1">
+                <input type="checkbox" className="w-4 h-4 rounded border-gray-300 text-sky-600 focus:ring-sky-500" />
+                <span className="text-[11px] text-slate-500 font-medium">
+                  I agree to the <Link href="#" className="text-sky-600 hover:underline">Terms and Privacy Policy</Link>
+                </span>
+              </label>
+
+              {/* Explicit type="submit" to handle form interception */}
+              <button type="submit" className="w-full bg-[#0F172A] text-white py-4 rounded-xl text-sm uppercase tracking-widest hover:bg-sky-600 transition-all shadow-lg shadow-slate-200 flex items-center justify-center gap-2">
+                Register <ArrowRight size={18} />
               </button>
 
-              <div className="text-center pt-4">
-                <span className="text-xs text-slate-400 font-medium">{"Don't have an account? "}</span>
-                <a href="./register" className="text-sky-600 text-xs hover:underline uppercase tracking-tighter">Register now</a>
+              <div className="text-center pt-2">
+                <span className="text-xs text-slate-400 font-medium">{"Already have an account? "}</span>
+                <Link href="/login" className="text-sky-600 text-xs hover:underline uppercase tracking-tighter">Login</Link>
               </div>
             </form>
           </div>
         </div>
       </main>
     </div>
-  );
-}
-
-function UserIcon({ className, size }: { className?: string, size?: number }) {
-  return (
-    <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-      <circle cx="12" cy="7" r="4" />
-    </svg>
   );
 }

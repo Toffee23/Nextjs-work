@@ -30,8 +30,8 @@ export default function CustomerSidebar() {
            {/* If user has image: <Image src="/user.jpg" fill className="object-cover" /> */}
         </div>
         <div>
-          <h3 className="font-bold text-slate-800 text-sm">John Doe</h3>
-          <p className="text-[11px] text-slate-400">johndoe@jummall.com</p>
+          <h3 className="font-bold text-slate-800 text-sm">Neel Ade</h3>
+          <p className="text-[11px] text-slate-400">neelorneels@gmail.com</p>
         </div>
       </div>
 

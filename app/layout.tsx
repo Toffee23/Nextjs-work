@@ -3,7 +3,7 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
-import NewsletterModal from "./components/modals/NewsLetterModal";
+import NewsletterModal from "./components/modals/NewLetterModal";
 
 // Configuring Montserrat with the weights needed for the UI in image_3c8130.png
 const montserrat = Montserrat({
