@@ -77,10 +77,10 @@ export default function ComputersSidebar() {
 
               {/* Updated Category Links following /categories/[name] static path routing convention */}
               <div className="pl-4 space-y-3 border-l border-slate-200/60 text-slate-400 font-normal">
-                <Link href="/categories/computers/desktop" className="block hover:text-[#149fcd] transition-colors">
+                <Link href="/categories/desktop" className="block hover:text-[#149fcd] transition-colors">
                   Desktop
                 </Link>
-                <Link href="/categories/computers/laptop" className="block hover:text-[#149fcd] transition-colors">
+                <Link href="/categories/laptop" className="block hover:text-[#149fcd] transition-colors">
                   Laptop
                 </Link>
                 
