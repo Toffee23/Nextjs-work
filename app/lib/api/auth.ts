@@ -1406,3 +1406,8 @@ export const fetchProductsByCategoryAPI = async (categorySlug: string): Promise<
   });
   return response.data?.items || response.data || [];
 };
+
+export interface BankItemAPI {
+  code: string;
+  name: string;
+}
