@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+'use client';
+
 import { Montserrat } from "next/font/google";
 import Script from "next/script";
 import { Toaster } from "sonner";
@@ -8,7 +9,7 @@ import Footer from "./components/layout/Footer";
 import ModalLayerController from "./components/modals/ModalLayerController";
 import { AuthProvider } from "@/context/AuthContext";
 import QueryProvider from "./providers/QueryProvider";
-import ErrorBoundary from "./components/error/ErrorBoundary"; // Import the boundary
+import ErrorBoundary from "./components/error/ErrorBoundary";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -17,8 +18,11 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
+
   title: "Jummall E-commerce Marketplace",
+
   description: "One store, endless possibilities",
+
 };
 
 export default function RootLayout({
@@ -40,7 +44,6 @@ export default function RootLayout({
           <AuthProvider>
             <Navbar />
             
-            {/* ErrorBoundary wraps the main page content only */}
             <main className="flex-grow">
               <ErrorBoundary>
                 {children}
