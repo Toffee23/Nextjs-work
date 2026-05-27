@@ -3,7 +3,7 @@
 import HeroSlider from "./components/home/HeroSlider";
 import CategoryShowcase from "./components/home/CategoryShowcase";
 import FeatureSection from "./components/home/FeatureSection";
-import FlashDeals from "./components/home/FlashDeals";
+import FlashDeals from "./components/home/FlashDeals"
 import TrendingProducts from "./components/home/TrendingProducts";
 import AdBanner from "./components/home/AdBanner";
 import TabletHero from "./components/home/TabletHero";
@@ -30,6 +30,9 @@ export default function Home() {
 
         {/* --- SECTION 4: CIRCULAR CATEGORIES --- */}
         <FlashDeals />
+
+        {/* --- SECTION 8: NEW ARRIVALS --- */}
+        <NewArrivals />
         
 
         {/* --- SECTION 5: TRENDING PRODUCTS --- */}
@@ -49,8 +52,7 @@ export default function Home() {
           <TabletHero />
         </div>
 
-        {/* --- SECTION 8: NEW ARRIVALS --- */}
-        <NewArrivals />
+        
 
         {/* --- SECTION 9: PRODUCT LISTS (ON SALE & TRENDING) --- */}
         <ProductLists />
