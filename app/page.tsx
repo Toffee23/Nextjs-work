@@ -9,6 +9,7 @@ import AdBanner from "./components/home/AdBanner";
 import TopVendors from "./components/home/TopVendors";
 import BestSellers from "./components/home/BestSellers";
 import EscrowPromise from "./components/home/EscrowPromise";
+import RecentlyViewed from "./components/home/RecentlyViewed";
 import TabletHero from "./components/home/TabletHero";
 import GadgetSection from "./components/home/GadgetSection";
 import NewArrivals from "./components/home/NewArrivals";
@@ -52,7 +53,7 @@ export default function Home() {
 
         <EscrowPromise />
 
-       
+        <RecentlyViewed />
 
      {/* --- SECTION 4: GADGETS & COMPUTERS --- */}
         {/* New section featuring the sidebar navigation and speaker products */}
